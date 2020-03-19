@@ -186,6 +186,15 @@
 
   }
 
+// Kopierfunktion
+
+  function kopiereInhalt(inputid) {
+    var eingabeID = inputid;
+    document.getElementById(eingabeID).select();
+    document.getElementById(eingabeID).setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+  }
 
 // Auto-Aktenladefunktionen
 
