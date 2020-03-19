@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<!--
+  Programmiert by Martin Cooper alias Martin S. | Quellcode darf nicht gedownloadet, bearbeitet oder verbreitet werden.
+-->
+
+
+<head>
+  <title>LSPD: Aktenvorschreibung</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="AktenvorschreibungSpeicherfunktionen.js"></script>
+  <style>
+    .copybutton {
+      margin-bottom: 1%;
+
+    }
+
+    #copy-function {
+      display: none;
+    }
+
+    #cookiehinweis {
+      display: inline;
+    }
+
+    .red {
+      color: red;
+    }
+
+    .datainput-col-1,
+    datainput-col-2 {
+      width: 49%;
+      float: left;
+    }
+
+    .datainput-col-freiraum {
+      width: 2%;
+      float: left;
+      color: red;
+      background-color: red;
+    }
+
+    footer {
+      position: inherit;
+      bottom: 0;
+      width: 100%;
+      height: 5%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body onload="ladenAlles()">
+  <header>
+    <div class="container-fluid">
+      <div class="col-sm-6">
+        <h2><strong>LSPD Aktenvorschreibung</strong></h2>
+        <p>Mit diesem Tool können Sie Ihre Akten vorschreiben und lokal speichern.<br> Wir alle wissen, dass das Aktensystem ab und zu auch mal abstürzt und dann alles weg ist.</p>
+        <p id="cookiehinweis" class="red">Achtung: Cookies müssen im Browser aktiviert sein. Wenn nicht, kann nicht gespeichert werden.</p>
+      </div>
+
+      <div class="col-sm-6">
+        <h2><b>Information</b></h2>
+        <div class="alert alert-info" role="alert">
+          <p>Inhalte werden nur lokal gespeichert. Solltest du deinen Browsercache leeren oder den Browser wechseln, verschwinden auch die Inhalte.</p>
+        </div>
+      </div>
+
+  </header>
+
+  <div class="container-fluid">
+    <ul class="nav nav-tabs">
+      <!--<li class="active"><a data-toggle="tab" href="#speicherfunktionen">Speicherfunktionen</a></li>-->
+      <li><a data-toggle="tab" href="#strafsacheakte">Strafsacheakte</a></li>
+      <li><a data-toggle="tab" href="#bußgeldakte">Bußgeldakte</a></li>
+      <li style="display: none"><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- <div id="soeicherfunktionen" class="tab-pane fade in active">
+        <h3><strong>Speicherfunktionen</strong></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div> -->
+      <div id="strafsacheakte" class="tab-pane fade">
+
+        <section id="headline">
+          <h3><b>Strafsacheakte</b></h3>
+        </section>
+
+        <section id="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <b>Schwerste Straftat</b>
+                      <input type="text" name="" value="" class="form-control" id="schwerstestraftatStrafsacheakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Einsatzort</b>
+                      <input type="text" name="" value="" class="form-control" id="einsatzortStrafsacheakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Datum</b>
+                      <input type="date" name="" value="" class="form-control" id="datumStrafsacheakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Uhrzeit</b>
+                      <input type="time" name="" value="" class="form-control" id="uhrzeitStrafsacheakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Straftaten</b>
+                      <textarea name="name" rows="5" class="form-control" id="straftatenStrafsacheakte"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <b>Aussehen</b>
+                      <textarea name="name" rows="5" class="form-control" id="aussehenStrafsacheakte"></textarea>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-0.5"></div>
+
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <b>Geschehen aus Sicht des Beamten</b>
+                      <textarea name="name" rows="5" class="form-control" id="geschehenStrafsacheakte"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <b>Zeugen</b>
+                      <textarea name="name" rows="5" class="form-control" id="zeugenStrafsacheakte"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <b>Beweismittel</b>
+                      <textarea name="name" rows="5" class="form-control" id="beweismittelStrafsacheakte"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-0.5"></div>
+
+                  <div class="col-md-2">
+                    <b>Speicherfunktionen</b><br><br>
+                    <button onclick="speichernStrafsacheakte()" type="button" class="btn btn-success btn-block">Strafsacheakte speichern</button>
+                    <button onclick="loeschenStrafsacheakte()" type="button" class="btn btn-danger btn-block">Strafsacheakte löschen</button><br><br>
+                    <div id="copy-function">
+                      <b>Kopieren ...</b><br><br>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Schwerste Straftat</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Einsatzort</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Straftaten</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Aussehen</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Geschehen aus Sicht des Beamten</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Zeugen und Zeugenaussagen</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Beweismittel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div id="bußgeldakte" class="tab-pane fade">
+
+        <section id="headline">
+          <h3><b>Bußgeldakte</b></h3>
+        </section>
+
+        <section id="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <b>Einsatzort</b>
+                      <input type="text" name="" value="" class="form-control" id="einsatzortBussgeldakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Datum</b>
+                      <input type="date" name="" value="" class="form-control" id="datumBussgeldakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Uhrzeit</b>
+                      <input type="time" name="" value="" class="form-control" id="uhrzeitBussgeldakte">
+                    </div>
+                    <div class="form-group">
+                      <b>Bußgeld</b>
+                      <textarea name="name" rows="5" class="form-control" id="bussgeldBussgeldakte"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <b>Geschehen aus Sicht des Beamten</b>
+                      <textarea name="name" rows="5" class="form-control" id="geschehenBussgeldakte"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-0.5">
+                    <!-- Trennclass -->
+                  </div>
+
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <b>Strafe (Titel der Akte (i. d. R. Titel des höchsten Bußgeldes))</b>
+                      <textarea name="name" rows="5" class="form-control" id="strafeBussgeldakte"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <b>Kommentar</b>
+                      <textarea name="name" rows="5" class="form-control" id="kommentarBussgeldakte"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-0.5">
+                    <!-- Trennclass -->
+                  </div>
+
+                  <div class="col-md-2">
+                    <b>Speicherfunktionen</b><br><br>
+                    <button onclick="speichernBussgeldakte()" type="button" class="btn btn-success btn-block">Bußgeldakte speichern</button>
+                    <button onclick="loeschenBussgeldakte()" type="button" class="btn btn-danger btn-block">Bußgeldakte löschen</button><br><br>
+                    <div id="copy-function">
+                      <b>Kopieren ...</b><br><br>
+                      <button onclick="kopiereInhalt(einsatzortBussgeldakte)" type="button" class="btn btn-primary btn-block">Einsatzort</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Bußgeld</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Geschehen aus Sicht des Beamten</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Strafe</button>
+                      <button onclick="" type="button" class="btn btn-primary btn-block">Kommentar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <!--<div id="menu3" class="tab-pane fade">
+        <h3>Menu 3</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>-->
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+
+
+  </script>
+
+  <footer>
+    <center>© by Martin Cooper | Los Santos Police Department</center>
+  </footer>
+
+
+</body>
+
+</html>
