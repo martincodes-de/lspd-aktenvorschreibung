@@ -1,3 +1,5 @@
+// Verison ohne Cookies
+
 // Variablendeklaration
 
   // Strafsacheakte
@@ -22,53 +24,6 @@
   var $input_strafeBussgeldakte;
   var $input_kommentarBussgeldakte;
 
-// Cookiefunktionen
-
-  // Cookie erstellen
-
-  function setCookie(cookiename, cookiewertdurchVAR) {
-
-    // Variablen - Datum
-
-    var $datumHeute = new Date();
-    var $datumAbgelaufen = new Date($datumHeute.getTime() + 30 * 24 * 3600 * 1000);
-
-    document.cookie = cookiename + "=" + cookiewertdurchVAR + ";" + "expires=" + $datumAbgelaufen + ";path=/";
-
-  }
-
-  // Cookie auslesen
-
-  function getCookie(cookiename) {
-
-    var name = cookiename + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-
-  }
-
-  // Cookie löschen
-
-  function delCookie(cookiename) {
-
-    // Variablen - Datum
-
-    var $datumHeute = new Date();
-
-    document.cookie = cookiename + "=" + "" + ";" + "expires=" + $datumHeute + ";path=/";
-
-  }
-
 // Speicherfunktionen
 
   // Speicherfunktion: Strafsacheakte
@@ -87,17 +42,17 @@
     $input_zeugenStrafsacheakte = document.getElementById("zeugenStrafsacheakte").value;
     $input_beweismittelStrafsacheakte = document.getElementById("beweismittelStrafsacheakte").value;
 
-    // Cookiesetzung
+    // Speichersetzung
 
-    setCookie("schwerstestraftatStrafsacheakte", $input_schwerstestraftatStrafsacheakte);
-    setCookie("einsatzortStrafsacheakte", $input_einsatzortStrafsacheakte);
-    setCookie("datumStrafsacheakte", $input_datumStrafsacheakte);
-    setCookie("uhrzeitStrafsacheakte", $input_uhrzeitStrafsacheakte);
-    setCookie("straftatenStrafsacheakte", $input_straftatenStrafsacheakte);
-    setCookie("aussehenStrafsacheakte", $input_aussehenStrafsacheakte);
-    setCookie("geschehenStrafsacheakte", $input_geschehenStrafsacheakte);
-    setCookie("zeugenStrafsacheakte", $input_zeugenStrafsacheakte);
-    setCookie("beweismittelStrafsacheakte", $input_beweismittelStrafsacheakte);
+    localStorage.setItem("schwerstestraftatStrafsacheakte", $input_schwerstestraftatStrafsacheakte);
+    localStorage.setItem("einsatzortStrafsacheakte", $input_einsatzortStrafsacheakte);
+    localStorage.setItem("datumStrafsacheakte", $input_datumStrafsacheakte);
+    localStorage.setItem("uhrzeitStrafsacheakte", $input_uhrzeitStrafsacheakte);
+    localStorage.setItem("straftatenStrafsacheakte", $input_straftatenStrafsacheakte);
+    localStorage.setItem("aussehenStrafsacheakte", $input_aussehenStrafsacheakte);
+    localStorage.setItem("geschehenStrafsacheakte", $input_geschehenStrafsacheakte);
+    localStorage.setItem("zeugenStrafsacheakte", $input_zeugenStrafsacheakte);
+    localStorage.setItem("beweismittelStrafsacheakte", $input_beweismittelStrafsacheakte);
 
     // Alert
 
@@ -121,13 +76,14 @@
 
     // Cookiesetzung
 
-    setCookie("einsatzortBussgeldakte", $input_einsatzortBussgeldakte);
-    setCookie("datumBussgeldakte", $input_datumBussgeldakte);
-    setCookie("uhrzeitBussgeldakte", $input_uhrzeitBussgeldakte);
-    setCookie("bussgeldBussgeldakte", $input_bussgeldBussgeldakte);
-    setCookie("geschehenBussgeldakte", $input_geschehenBussgeldakte);
-    setCookie("strafeBussgeldakte", $input_strafeBussgeldakte);
-    setCookie("kommentarBussgeldakte", $input_kommentarBussgeldakte);
+    localStorage.setItem("einsatzortBussgeldakte", $input_einsatzortBussgeldakte);
+    localStorage.setItem("datumBussgeldakte", $input_datumBussgeldakte);
+    localStorage.setItem("uhrzeitBussgeldakte", $input_uhrzeitBussgeldakte);
+    localStorage.setItem("bussgeldBussgeldakte", $input_bussgeldBussgeldakte);
+    localStorage.setItem("geschehenBussgeldakte", $input_geschehenBussgeldakte);
+    localStorage.setItem("strafeBussgeldakte", $input_strafeBussgeldakte);
+    localStorage.setItem("kommentarBussgeldakte", $input_kommentarBussgeldakte);
+
     // Alert
 
     alert("Bußgeldakte erfolgreich im Browsercache gespeichert.");
@@ -142,15 +98,15 @@
 
     if (confirm("Strafakte löschen? Sie ist für immer weg!")) {
 
-        delCookie("schwerstestraftatStrafsacheakte");
-        delCookie("einsatzortStrafsacheakte");
-        delCookie("datumStrafsacheakte");
-        delCookie("uhrzeitStrafsacheakte");
-        delCookie("straftatenStrafsacheakte");
-        delCookie("aussehenStrafsacheakte");
-        delCookie("geschehenStrafsacheakte");
-        delCookie("zeugenStrafsacheakte");
-        delCookie("beweismittelStrafsacheakte");
+        localStorage.removeItem("schwerstestraftatStrafsacheakte");
+        localStorage.removeItem("einsatzortStrafsacheakte");
+        localStorage.removeItem("datumStrafsacheakte");
+        localStorage.removeItem("uhrzeitStrafsacheakte");
+        localStorage.removeItem("straftatenStrafsacheakte");
+        localStorage.removeItem("aussehenStrafsacheakte");
+        localStorage.removeItem("geschehenStrafsacheakte");
+        localStorage.removeItem("zeugenStrafsacheakte");
+        localStorage.removeItem("beweismittelStrafsacheakte");
         alert("Löschvorgang erfolgreich durchgeführt. Tool wird neugeladen.");
         location.reload();
 
@@ -168,13 +124,13 @@
 
     if (confirm("Bußgeldakte löschen? Sie ist für immer weg!")) {
 
-        delCookie("einsatzortBussgeldakte");
-        delCookie("datumBussgeldakte");
-        delCookie("uhrzeitBussgeldakte");
-        delCookie("bussgeldBussgeldakte");
-        delCookie("geschehenBussgeldakte");
-        delCookie("strafeBussgeldakte");
-        delCookie("kommentarBussgeldakte");
+        localStorage.removeItem("einsatzortBussgeldakte");
+        localStorage.removeItem("datumBussgeldakte");
+        localStorage.removeItem("uhrzeitBussgeldakte");
+        localStorage.removeItem("bussgeldBussgeldakte");
+        localStorage.removeItem("geschehenBussgeldakte");
+        localStorage.removeItem("strafeBussgeldakte");
+        localStorage.removeItem("kommentarBussgeldakte");
         alert("Löschvorgang erfolgreich durchgeführt. Tool wird neugeladen.");
         location.reload();
 
@@ -193,27 +149,27 @@
 
     function ladenStrafsacheakte() {
 
-      document.getElementById("schwerstestraftatStrafsacheakte").value = getCookie("schwerstestraftatStrafsacheakte");
-      document.getElementById("einsatzortStrafsacheakte").value = getCookie("einsatzortStrafsacheakte");
-      document.getElementById("datumStrafsacheakte").value = getCookie("datumStrafsacheakte");
-      document.getElementById("uhrzeitStrafsacheakte").value = getCookie("uhrzeitStrafsacheakte");
-      document.getElementById("straftatenStrafsacheakte").value = getCookie("straftatenStrafsacheakte");
-      document.getElementById("aussehenStrafsacheakte").value = getCookie("aussehenStrafsacheakte");
-      document.getElementById("geschehenStrafsacheakte").value = getCookie("geschehenStrafsacheakte");
-      document.getElementById("zeugenStrafsacheakte").value = getCookie("zeugenStrafsacheakte");
-      document.getElementById("beweismittelStrafsacheakte").value = getCookie("beweismittelStrafsacheakte");
+      document.getElementById("schwerstestraftatStrafsacheakte").value = localStorage.getItem("schwerstestraftatStrafsacheakte");
+      document.getElementById("einsatzortStrafsacheakte").value = localStorage.getItem("einsatzortStrafsacheakte");
+      document.getElementById("datumStrafsacheakte").value = localStorage.getItem("datumStrafsacheakte");
+      document.getElementById("uhrzeitStrafsacheakte").value = localStorage.getItem("uhrzeitStrafsacheakte");
+      document.getElementById("straftatenStrafsacheakte").value = localStorage.getItem("straftatenStrafsacheakte");
+      document.getElementById("aussehenStrafsacheakte").value = localStorage.getItem("aussehenStrafsacheakte");
+      document.getElementById("geschehenStrafsacheakte").value = localStorage.getItem("geschehenStrafsacheakte");
+      document.getElementById("zeugenStrafsacheakte").value = localStorage.getItem("zeugenStrafsacheakte");
+      document.getElementById("beweismittelStrafsacheakte").value = localStorage.getItem("beweismittelStrafsacheakte");
 
     }
 
     function ladenBussgeldakte() {
 
-      document.getElementById("einsatzortBussgeldakte").value = getCookie("einsatzortBussgeldakte");
-      document.getElementById("datumBussgeldakte").value = getCookie("datumBussgeldakte");
-      document.getElementById("uhrzeitBussgeldakte").value = getCookie("uhrzeitBussgeldakte");
-      document.getElementById("bussgeldBussgeldakte").value = getCookie("bussgeldBussgeldakte");
-      document.getElementById("geschehenBussgeldakte").value = getCookie("geschehenBussgeldakte");
-      document.getElementById("strafeBussgeldakte").value = getCookie("strafeBussgeldakte");
-      document.getElementById("kommentarBussgeldakte").value = getCookie("kommentarBussgeldakte");
+      document.getElementById("einsatzortBussgeldakte").value = localStorage.getItem("einsatzortBussgeldakte");
+      document.getElementById("datumBussgeldakte").value = localStorage.getItem("datumBussgeldakte");
+      document.getElementById("uhrzeitBussgeldakte").value = localStorage.getItem("uhrzeitBussgeldakte");
+      document.getElementById("bussgeldBussgeldakte").value = localStorage.getItem("bussgeldBussgeldakte");
+      document.getElementById("geschehenBussgeldakte").value = localStorage.getItem("geschehenBussgeldakte");
+      document.getElementById("strafeBussgeldakte").value = localStorage.getItem("strafeBussgeldakte");
+      document.getElementById("kommentarBussgeldakte").value = localStorage.getItem("kommentarBussgeldakte");
 
     }
 
